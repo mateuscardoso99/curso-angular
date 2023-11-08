@@ -1,0 +1,10 @@
+<div class="text-center" *ngIf="hasMore; else caiuNoElse">
+    <button class="btn btn-primary">Load more</button>
+</div>
+
+<ng-template #caiuNoElse>
+    <p class="text-center text-muted">No more data to load</p>
+</ng-template>
+<!--a parte que estiver no else da condição no caso o paragrafo que será exibido 
+    quando hasMore for false tem que estar dentro das tags ng-template e precisa ter uma 
+    variavel na tag iniciando com #-->

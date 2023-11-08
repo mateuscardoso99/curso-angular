@@ -1,0 +1,52 @@
+<h4 class="text-center">Login</h4>
+
+<!--propriedade formGroup vem do ReactiveFormsModule e especifica qual propriedade do componente
+ vai controlar a validação-->
+<form [formGroup]="loginForm" class="form mt-4" (submit)="login()">
+
+    <div class="form-group">
+        <input 
+            #userNameInput
+            formControlName="userName"
+            class="form-control" 
+            placeholder="user name" 
+            autofocus
+        >  
+        <!--formControlName linca o input a propriedade userName definida no oninit-->
+        <div *ngIf="loginForm.controls['userName'].errors">
+            <ap-vmessage
+                *ngIf="loginForm.controls['userName'].errors?.['required']"
+                text="User name is required!">
+            </ap-vmessage>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input
+            formControlName="password"
+            type="password" 
+            class="form-control" 
+            placeholder="password"
+        >
+        <div *ngIf="loginForm.controls['password'].errors">
+            <ap-vmessage
+                *ngIf="loginForm.controls['password'].errors?.['required']"
+                text="User name is required!">
+            </ap-vmessage>
+            <ap-vmessage
+                *ngIf="loginForm.controls['password'].errors?.['minlength']"
+                text="Password is minimum 4 characters!">
+            </ap-vmessage>
+        </div>
+    </div>
+
+    <button 
+        [disabled]="loginForm.invalid"
+        type="submit" 
+        class="btn btn-primary btn-block">
+        login
+    </button>
+
+</form>
+
+<p>Not a user?<a [routerLink]="['signup']">Register now</a></p>

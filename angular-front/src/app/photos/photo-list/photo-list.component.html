@@ -1,0 +1,27 @@
+<ap-search 
+    (onTyping)="filter = $event"
+    [value] = "filter"
+></ap-search>
+<!--propriedade onTyping existe no componente search e será emitido um evento
+    pelo event emitter com o valor para o componente photos-list que é pai dele-->
+<!--value do input componente search terá o mesmo valor de filter do componente photos-list
+    se filter for setado com '' value tambem sera-->
+
+
+<p class="text-left">Filtro: {{filter}}</p>
+
+<!-- {{ nome | uppercase }} -> pipe que converte o nome para maiusculo -->
+
+<!--no evento keyup filter é a própria variavel do componente ts-->
+
+<!--(keyup) entre parenteses faz um event binding da propriedade keyup 
+    com a varivel filter levando o valor do html para o componente-->
+
+<!-- [] propriedade entre colchetes significa que o valor de uma 
+    propriedade do componente virá para o componente html -->
+
+<ap-photos [photos]="photos | filterByDescription: filter"></ap-photos>
+
+<!-- | filterByDescription: filter : passando o pipe criado com o parametro description-->
+
+<ap-load-button (click)="load()" [hasMore]="hasMore"></ap-load-button>
